@@ -14,7 +14,7 @@ const filterOptionList = [
     {value: "bad", name: "안 좋은 감정만"},
 ];
 
-const ControlMenu = ({value, onChange, optionList}) => {
+const ControlMenu = React.memo(({value, onChange, optionList}) => {
     return ( 
         <select className='ControlMenu' value={value} onChange={(e) => onChange(e.target.value)}>
             {optionList.map((item, index) => (
@@ -22,7 +22,7 @@ const ControlMenu = ({value, onChange, optionList}) => {
             ))}
         </select> 
     )
-}
+});
 
 const DiaryList = ({diaryList}) => {
     const [sortType, setSortType] = useState('latest');
@@ -31,7 +31,6 @@ const DiaryList = ({diaryList}) => {
 
     // 원본 배열 건들지 않기 위해
     const getProcessedDiaryList = () => {
-
         const filterCallBack = (item) => {
             if(filter === 'good') {
                 return parseInt(item.emotion) <= 3;
